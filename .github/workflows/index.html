@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Untuk My Mommy Dinda 💕 (Pelan Pelan aja mom baca nya jngn buru buru)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fff5f8;
+    --ink:#3b2136;
+    --muted:#8a6a80;
+    --pink:#ff6f9c;
+    --rose:#ff4d6d;
+    --deep:#c2185b;
+    --lav:#f6d7ff;
+    --cream:#fffdf9;
+    --gold:#ffb703;
+    --shadow:0 18px 40px -18px rgba(194,24,91,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Nunito',system-ui,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, #ffe3ee 0%, transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, #f3e3ff 0%, transparent 55%),
+      linear-gradient(180deg,#fff7fa 0%, #fff2f6 40%, #ffeef6 100%);
+    min-height:100vh;
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  canvas#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  main{position:relative;z-index:1}
+
+  /* ---------- reusable ---------- */
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  section{padding:80px 0}
+  .kicker{
+    display:inline-block;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+    background:#fff;border:2px solid #ffd3e2;color:var(--deep);
+    padding:6px 16px;border-radius:999px;font-weight:900;margin-bottom:14px;
+  }
+  h2.sec{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:900;line-height:1.2;margin-bottom:8px}
+  h2.sec .script{font-family:'Pacifico',cursive;color:var(--rose);font-weight:400}
+  p.lead{color:var(--muted);max-width:640px;margin-bottom:34px}
+  .card{
+    background:var(--cream);border:2px solid #ffe1ec;border-radius:26px;
+    box-shadow:var(--shadow);padding:28px;
+  }
+  .btn{
+    display:inline-block;border:none;cursor:pointer;font-family:inherit;font-weight:900;
+    font-size:1rem;padding:14px 26px;border-radius:999px;color:#fff;
+    background:linear-gradient(135deg,var(--rose),var(--deep));
+    box-shadow:0 12px 24px -10px rgba(194,24,91,.7);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 18px 30px -12px rgba(194,24,91,.75)}
+  .btn:active{transform:translateY(0) scale(.98)}
+  .btn.ghost{background:#fff;color:var(--deep);border:2px solid #ffd3e2;box-shadow:none}
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* ---------- nav ---------- */
+  nav.pill{
+    position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:40;
+    display:flex;gap:4px;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);
+    border:2px solid #ffd9e6;border-radius:999px;padding:7px 10px;
+    box-shadow:0 14px 30px -14px rgba(194,24,91,.5);
+    max-width:calc(100vw - 24px);overflow-x:auto;
+  }
+  nav.pill a{
+    text-decoration:none;font-size:1.15rem;padding:6px 10px;border-radius:999px;
+    transition:background .2s,transform .2s;
+  }
+  nav.pill a:hover{background:#ffe7f0;transform:translateY(-3px)}
+  nav.pill a span{display:none;font-size:.72rem;font-weight:900;color:var(--deep);margin-left:4px}
+  @media(min-width:720px){nav.pill a span{display:inline}}
+
+  /* ---------- hero ---------- */
+  #home{min-height:96vh;display:flex;align-items:center;text-align:center;padding-top:60px}
+  .hero-heart{font-size:clamp(3.4rem,10vw,5.5rem);animation:bounce 2.4s ease-in-out infinite;display:inline-block;filter:drop-shadow(0 12px 18px rgba(255,77,109,.45))}
+  @keyframes bounce{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
+  h1{
+    font-family:'Pacifico',cursive;font-weight:400;
+    font-size:clamp(3rem,13vw,7rem);line-height:1.05;margin:10px 0 6px;
+    background:linear-gradient(120deg,var(--rose) 10%,#ff8fb4 45%,#b57bff 90%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:floaty 5s ease-in-out infinite;
+  }
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .typed{font-size:clamp(1rem,2.6vw,1.25rem);color:var(--muted);min-height:2.2em;max-width:620px;margin:0 auto}
+  .typed .cursor{display:inline-block;width:2px;background:var(--rose);animation:blink .8s steps(1) infinite;margin-left:2px}
+  @keyframes blink{50%{opacity:0}}
+  .hero-btns{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .scroll-hint{margin-top:44px;color:var(--muted);font-size:.85rem;animation:bounce 2s ease-in-out infinite}
+
+  /* ---------- dodger ---------- */
+  #peringatan{background:linear-gradient(180deg,transparent,#fff0f5 25%,#fff0f5 75%,transparent)}
+  .dodge-area{
+    position:relative;height:270px;border:3px dashed #ffb3c9;border-radius:26px;
+    background:
+      repeating-linear-gradient(45deg,#fff8fa 0 14px,#fff1f6 14px 28px);
+    overflow:hidden;
+  }
+  .dodge-area .warn-label{position:absolute;top:14px;left:18px;font-size:.78rem;font-weight:900;letter-spacing:.15em;color:#e5537a;text-transform:uppercase}
+  #dodgeBtn{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    transition:left .16s ease,top .16s ease,background .3s;
+    font-size:1rem;
+  }
+  #dodgeBtn.caught{position:absolute;transform:translate(-50%,-50%);background:linear-gradient(135deg,#8a5cff,#5b8cff);animation:shake .5s ease}
+  @keyframes shake{0%,100%{transform:translate(-50%,-50%) rotate(0)}25%{transform:translate(-50%,-50%) rotate(-6deg)}75%{transform:translate(-50%,-50%) rotate(6deg)}}
+  #dodgeMsg{display:none;margin-top:20px}
+  #dodgeMsg.show{display:block;animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
+  @keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+  .dodge-count{font-size:.85rem;color:var(--muted);text-align:center;margin-top:12px}
+
+  /* ---------- reason cards ---------- */
+  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .flip{perspective:1200px;height:258px;cursor:pointer}
+  .flip-inner{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.4,1.4,.5,1);transform-style:preserve-3d}
+  .flip.on .flip-inner{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:26px;padding:24px;display:flex;flex-direction:column;justify-content:center;gap:8px;border:2px solid #ffe1ec}
+  .face.front{background:var(--cream);box-shadow:var(--shadow);align-items:center;text-align:center}
+  .face.front .emo{font-size:3rem;animation:bounce 3s ease-in-out infinite}
+  .face.front .tip{font-size:.78rem;color:var(--muted);font-weight:700}
+  .face.back{background:linear-gradient(140deg,#ff5f8f,#c2185b);color:#fff;transform:rotateY(180deg);box-shadow:var(--shadow)}
+  .face.back h3{font-size:1.1rem;font-weight:900}
+  .face.back p{font-size:.9rem;opacity:.95;line-height:1.5}
+
+  /* ---------- love meter ---------- */
+  .meter-card{text-align:center;max-width:720px;margin:0 auto}
+  .bar{height:34px;background:#ffe7ef;border:2px solid #ffd0df;border-radius:999px;overflow:hidden;margin:22px 0 8px;position:relative}
+  .bar-fill{height:100%;width:0%;background:linear-gradient(90deg,#ffb3c9,var(--rose),#ff2d55);transition:width .1s linear;position:relative}
+  .bar-fill::after{content:'💗';position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:1.1rem}
+  .meter-label{font-weight:900;color:var(--deep);min-height:1.6em}
+  #meterBtn{user-select:none;-webkit-user-select:none;touch-action:none;margin-top:6px}
+  .meter-note{font-size:.85rem;color:var(--muted);margin-top:14px}
+
+  /* ---------- letter ---------- */
+  .letter-stage{max-width:760px;margin:0 auto;text-align:center}
+  .envelope{position:relative;cursor:pointer;user-select:none;display:inline-block;width:min(420px,90%);}
+  .env-body{
+    background:linear-gradient(160deg,#fff,#ffe9f1);border:3px solid #ff9dbb;border-radius:18px;
+    padding:54px 24px 30px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .env-body::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to bottom right,transparent 46%,#ffd7e5 47%,#ffd7e5 53%,transparent 54%),
+               linear-gradient(to bottom left,transparent 46%,#ffd7e5 47%,#ffd7e5 53%,transparent 54%);
+    opacity:.7;
+  }
+  .flap{
+    position:absolute;left:0;right:0;top:0;height:60px;
+    background:linear-gradient(180deg,#ffd7e5,#ffbdd3);
+    border:3px solid #ff9dbb;border-bottom:none;border-radius:18px 18px 0 0;
+    transform-origin:top center;transition:transform .6s ease;z-index:3;
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    height:78px;
+  }
+  .envelope.open .flap{transform:rotateX(180deg);z-index:0}
+  .seal{position:relative;z-index:4;font-size:2.6rem;animation:bounce 2.6s ease-in-out infinite;pointer-events:none}
+  .env-hint{margin-top:14px;font-weight:900;color:var(--deep)}
+  .letter{
+    display:none;background:#fffef8;border:2px solid #ffe1ec;border-radius:20px;
+    padding:32px 30px;text-align:left;box-shadow:var(--shadow);margin-top:-24px;
+    font-family:'Nunito',sans-serif;
+    background-image:repeating-linear-gradient(transparent,transparent 31px,#ffeef3 31px,#ffeef3 32px);
+  }
+  .letter.show{display:block;animation:pop .6s cubic-bezier(.2,1.5,.4,1)}
+  .letter h3{font-family:'Pacifico',cursive;font-weight:400;color:var(--rose);font-size:1.7rem;margin-bottom:14px}
+  .letter p{margin-bottom:14px;font-size:1.02rem}
+  .letter .sign{font-family:'Pacifico',cursive;color:var(--deep);font-size:1.35rem;text-align:right}
+  .line-box{background:#fff7fa;border:2px dashed #ffb3c9;border-radius:18px;padding:18px;margin-top:22px;text-align:center;min-height:74px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+  .line-box .txt{font-weight:900;color:var(--ink);font-size:1.02rem}
+
+  /* ---------- quiz ---------- */
+  .quiz-card{max-width:760px;margin:0 auto;text-align:left}
+  .q-progress{font-size:.8rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .q-title{font-size:1.35rem;font-weight:900;margin-bottom:20px}
+  .q-opts{display:grid;gap:12px}
+  .q-opt{
+    text-align:left;background:#fff;border:2px solid #ffd9e6;border-radius:16px;
+    padding:14px 18px;font-family:inherit;font-size:1rem;font-weight:700;color:var(--ink);
+    cursor:pointer;transition:.18s;
+  }
+  .q-opt:hover{border-color:var(--rose);transform:translateX(6px);background:#fff5f8}
+  .q-fb{margin-top:16px;font-weight:900;color:var(--deep);min-height:1.5em}
+  .q-result{text-align:center;display:none}
+  .q-result.show{display:block;animation:pop .6s cubic-bezier(.2,1.5,.4,1)}
+  .score{font-family:'Pacifico',cursive;font-size:clamp(3.4rem,12vw,5.5rem);background:linear-gradient(120deg,var(--rose),#b57bff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+  .restart{margin-top:20px}
+
+  /* ---------- coupons ---------- */
+  .coupon{
+    position:relative;cursor:pointer;background:linear-gradient(135deg,#fff 0%,#fff5f8 100%);
+    border:2px solid #ffd9e6;border-radius:22px;padding:26px 24px;box-shadow:var(--shadow);
+    transition:.25s;overflow:hidden;text-align:center;
+  }
+  .coupon:hover{transform:translateY(-6px)}
+  .coupon .big{font-size:2.6rem}
+  .coupon h4{font-size:1.05rem;font-weight:900;margin:8px 0 4px}
+  .coupon .terms{font-size:.82rem;color:var(--muted)}
+  .coupon .code{
+    margin-top:14px;font-weight:900;letter-spacing:.2em;color:var(--deep);
+    background:#ffe7f0;border-radius:10px;padding:8px;display:none;
+  }
+  .coupon.used .code{display:block}
+  .coupon .stamp{
+    position:absolute;top:14px;right:-40px;transform:rotate(18deg);
+    background:#ff2d55;color:#fff;font-weight:900;font-size:.75rem;letter-spacing:.12em;
+    padding:5px 44px;opacity:0;transition:.35s;border-radius:6px;
+  }
+  .coupon.used .stamp{opacity:1;right:-14px}
+  .coupon.used{filter:saturate(.85)}
+  #couponDone{display:none;margin-top:26px;text-align:center;font-weight:900;color:var(--deep)}
+  #couponDone.show{display:block;animation:pop .5s ease}
+
+  /* ---------- footer ---------- */
+  footer{text-align:center;padding:70px 0 120px;background:linear-gradient(180deg,transparent,#ffe6f0);color:var(--muted)}
+  footer .big-heart{font-size:2.4rem;display:inline-block;cursor:pointer;animation:bounce 2.2s ease-in-out infinite}
+  footer p{font-size:.92rem;margin-top:10px}
+  .counter{font-weight:900;color:var(--deep)}
+
+  /* ---------- toast ---------- */
+  #toast{
+    position:fixed;left:50%;bottom:84px;transform:translate(-50%,20px);z-index:60;
+    background:#3b2136;color:#fff;padding:12px 22px;border-radius:999px;font-weight:900;
+    font-size:.92rem;opacity:0;pointer-events:none;transition:.35s;max-width:90vw;text-align:center;
+    box-shadow:0 14px 30px -12px rgba(0,0,0,.5);
+  }
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  #musicBtn{
+    position:fixed;top:16px;right:16px;z-index:50;width:48px;height:48px;border-radius:50%;
+    border:2px solid #ffd9e6;background:#fff;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);
+    transition:.2s;
+  }
+  #musicBtn:hover{transform:scale(1.1) rotate(8deg)}
+  #musicBtn.on{background:linear-gradient(135deg,var(--rose),var(--deep));animation:pulse 1.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,77,109,.5)}50%{box-shadow:0 0 0 12px rgba(255,77,109,0)}}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<button id="musicBtn" title="Musik, biar gak bosen (agak receh)">🎵</button>
+<div id="toast"></div>
+
+<nav class="pill">
+  <a href="#home">🏠<span>Home</span></a>
+  <a href="#peringatan">⚠️<span>Jangan</span></a>
+  <a href="#alasan">💗<span>Alasan</span></a>
+  <a href="#meter">🔥<span>Meter</span></a>
+  <a href="#surat">💌<span>Surat</span></a>
+  <a href="#kuis">❓<span>Kuis</span></a>
+  <a href="#kupon">🎟️<span>Kupon</span></a>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section id="home" class="wrap">
+    <div>
+      <span class="kicker">✨ spesial buat ✨</span>
+      <div class="hero-heart">💗</div>
+      <h1>Dinda</h1>
+      <div class="typed"><span id="typedTxt"></span><span class="cursor">&nbsp;</span></div>
+      <div class="hero-btns">
+        <button class="btn" data-scroll="#alasan">Mulai Jelajah 💌</button>
+        <a class="btn ghost" href="#surat">Baca Surat Dulu 📜</a>
+      </div>
+      <div class="scroll-hint">↓ Baca nya sambil nyantai mom, jangan buru buru ↓</div>
+    </div>
+  </section>
+
+  <!-- ============ DODGER ============ -->
+  <section id="peringatan" class="wrap">
+    <div class="reveal">
+      <span class="kicker">⚠️ peringatan penting ⚠️</span>
+      <h2 class="sec">Sama sekali <span class="script">jangan klik</span> tombol ini</h2>
+      <p class="lead">Awas Tombol nya kabur mom :v</p>
+      <div class="dodge-area" id="dodgeArea">
+        <div class="warn-label">jangan arahkan kursor ke sini</div>
+        <button class="btn" id="dodgeBtn">Jangan Klik gweh 😇</button>
+      </div>
+      <div class="dodge-count">Percobaan kabur: <b id="dodgeCount">0</b> / 5</div>
+
+      <div class="card" id="dodgeMsg">
+        <h3 style="font-size:1.3rem;font-weight:900;margin-bottom:8px">Udah deh, Mommy menang 😤</h3>
+        <p>Yaudah aku nyerah <b>Mommy menang</b>hiks hiks<br><br>
+        Karena lu udah ngotot klik, ada hadiah: <a href="#surat" style="color:var(--deep);font-weight:900">suratnya ada di bawah 👇</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ALASAN ============ -->
+  <section id="alasan" class="wrap">
+    <div class="reveal">
+      <span class="kicker">alasan random 🌟</span>
+      <h2 class="sec">Kenapa Mommy itu ... <span class="script">:v</span></h2>
+      <p class="lead">Kartunya dibalik-balik ya, jangan di-skip. :v</p>
+    </div>
+
+    <div class="grid reveal">
+      <div class="flip"><div class="flip-inner">
+        <div class="face front"><div class="emo"></div><b>Senyumnya</b><div class="tip">klik buat buka</div></div>
+        <div class="face back"><h3>🌤️ Senyumnya</h3><p>Jujur senyum Mommy itu bikin aku salting mulu apalagi Mommy panggil aku sayang :v.</p></div>
+      </div></div>
+
+      <div class="flip"><div class="flip-inner">
+        <div class="face front"><div class="emo"></div><b>Penampilannya</b><div class="tip">klik buat buka</div></div>
+        <div class="face back"><h3>Penampilan nya</h3><p>Jujur penampilan Mommy dinda tuh anggun banget dari atas sampe bawah, kayak tuan putri.</p></div>
+      </div></div>
+
+      <div class="flip"><div class="flip-inner">
+        <div class="face front"><div class="emo">🎵</div><b>Seleranya</b><div class="tip">klik buat buka</div></div>
+        <div class="face back"><h3>🎵 Seleranya</h3><p>Aku belum tahu selera Mommy gimna tapi aku tahu bahwa Mommy orang nya gak pilih pilih :v</p></div>
+      </div></div>
+
+      <div class="flip"><div class="flip-inner">
+        <div class="face front"><div class="emo">📸</div><b>Wajahnya</b><div class="tip">klik buat buka</div></div>
+        <div class="face back"><h3>📸 Wajahnya</h3><p>Wajah Mommy sungguh menawan dan anggun, jdinn pengen Mommy jdi mbg gwehh. </p></div>
+      </div></div>
+
+      <div class="flip"><div class="flip-inner">
+        <div class="face front"><div class="emo">💗</div><b>Hatinya</b><div class="tip">klik buat buka</div></div>
+        <div class="face back"><h3>💗 Hatinya</h3><p>Hati Mommy tuh sungguh baik, Tetap jadi orang baik ya mom :v</p></div>
+      </div></div>
+
+      <div class="flip"><div class="flip-inner">
+        <div class="face front"><div class="emo"></div><b>Kekonyolannya</b><div class="tip">klik buat buka</div></div>
+        <div class="face back"><h3>😂 Kekonyolannya</h3><p>Tau gak Mommy setiap ngobrol sama aku, suka ada hal konyol yg trjdi :v</p></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ============ LOVE METER ============ -->
+  <section id="meter" class="wrap">
+    <div class="card meter-card reveal">
+      <span class="kicker">uji kejujuran 🔥</span>
+      <h2 class="sec">Seberapa <span class="script">Sayang Mommy</span> sama aku</h2>
+      <p class="lead" style="margin:6px auto 0">Tekan terus tombolnya, jangan dilepas. Kalau dilepas, dia turun lagi. Kalo turun brarti Mommy gk sayang aku 😢</p>
+      <div class="bar"><div class="bar-fill" id="meterFill"></div></div>
+      <div class="meter-label" id="meterLabel">0% — belum mulai...  Ayo dong 😆</div>
+      <button class="btn" id="meterBtn">TAHAN DI SINI 🫶</button>
+      <div class="meter-note">Yey Mommy sayang aku :v</div>
+    </div>
+  </section>
+
+  <!-- ============ SURAT ============ -->
+  <section id="surat" class="wrap">
+    <div class="letter-stage reveal">
+      <span class="kicker">rahasia banget 🤫</span>
+      <h2 class="sec">Ada <span class="script">surat</span> buat Mommy</h2>
+      <p class="lead" style="margin:0 auto 26px">Kopernya diklik ya. Jangan sambil makan nanti tersedak :v</p>
+
+      <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="env-body"><div class="seal">💌</div></div>
+        <div class="env-hint" id="envHint">klik buat buka</div>
+      </div>
+
+      <div class="letter" id="letter">
+        <h3>Mommy,</h3>
+        <p>Jujur aku gatau mau ngomong apa njir, tapi tau gak Mommy itu Semangat hidup ku,</p>
+        <p>Soal nya cuman Mommy yg selalu ada Buatku,</p>
+        <p>Aku gak punya temen selain Mommy, Punya sih temen online :v,</p>
+        <p>Tapi jarang interaksi aja jdi nya aku agak kesepian gitu :v, malah curhat aku ya wkwkk.</p>
+        <p>aku emang gak terlalu jago susun kata kata jadi kalo ada salah kata tolong di maafin ya Mommy. </p>
+        <div class="sign">— RionMD yang bikin web receh ini 💘</div>
+      </div>
+
+      <div class="line-box">
+        <div class="txt" id="lineTxt">Aku ga pandai ngomong... tapi kalau Mommy klik tombol di bawah, Aku coba 😆</div>
+        <div><button class="btn ghost" id="lineBtn">Kasih gw satu baris 💬</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KUIS ============ -->
+  <section id="kuis" class="wrap">
+    <div class="card quiz-card reveal">
+      <span class="kicker">tes ilmiah 🧪</span>
+      <h2 class="sec"> Tes Kejujuran <span class="script">100% real</span></h2>
+      <p class="lead" style="margin-bottom:24px">Tiga pertanyaan. Jawaban dicatat, keputusan final pakai hati bukan logika.</p>
+
+      <div id="quizBox">
+        <div class="q-progress" id="qProgress"></div>
+        <div class="q-title" id="qTitle"></div>
+        <div class="q-opts" id="qOpts"></div>
+        <div class="q-fb" id="qFb"></div>
+      </div>
+
+      <div class="q-result" id="qResult">
+        <div class="score" id="scoreTxt">100%</div>
+        <h3 style="font-size:1.3rem;font-weight:900">Makasih ya, Mommy uda jujur</h3>
+        <p class="lead" style="margin:10px auto 0;text-align:center">Mommy Hebat jujur Banget.</p>
+        <button class="btn restart" id="qRestart">Ulangi🔁?</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KUPON ============ -->
+  <section id="kupon" class="wrap">
+    <div class="reveal">
+      <span class="kicker">hadiah beneran 🎁</span>
+      <h2 class="sec">Kupon yang <span class="script">ga ada</span> di Indomaret</h2>
+      <p class="lead">Klik buat klaim. Ada cap "terpakai" biar lu inget pernah dapet ini (dan ga berani klaim dua kali :v).</p>
+    </div>
+
+    <div class="grid reveal">
+      <div class="coupon">
+        <div class="stamp">TERPAKAI</div>
+        <div class="big">?</div>
+        <h4> Unlimited di editin </h4>
+        <div class="terms">Berlaku kapan aja, ga ada expired, ga ada syarat. Bahkan pas lu lagi ga mood.</div>
+        <div class="code"> kode: Editin-Mommy-001</div>
+      </div>
+      <div class="coupon">
+        <div class="stamp">TERPAKAI</div>
+        <div class="big">?</div>
+        <h4> Unlimited bantuan</h4>
+        <div class="terms">Kalo Mommy butuh bantuan aku buat, editing, skripsian, buat web, ngoding, bisa chat ajah ya</div>
+        <div class="code">kode: Bantuan-Mommy-002</div>
+      </div>
+      <div class="coupon">
+        <div class="stamp">TERPAKAI</div>
+        <div class="big">🕘</div>
+        <h4>Waktu aku 24 Jam</h4>
+        <div class="terms">Mommy mau ngobrol soal apapun jam berapapun, gw standby. Serius, cek chat aja. Kecuali lewat jam 10 malem.</div>
+        <div class="code">kode: STANDBY-Mommy-003</div>
+      </div>
+    </div>
+    <div id="couponDone">🎉 Semua kupon Mommy claim, Terimakasih uda mengunjungin web aku.</div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap">
+      <span class="big-heart" id="footHeart">💘</span>
+      <p>Mommy Udah luangin waktu <span class="counter" id="timeSpent">0 detik</span> di halaman ini.</p>
+      <p>Suka gak? 😆</p>
+      <p style="margin-top:18px">Dibuat pakai ☕ dan hati, khusus buat <b style="color:var(--deep)">Dinda</b>.</p>
+      <p style="font-size:.8rem;opacity:.7">© 2026 — copyright by RionMD</p>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(s,r){return (r||document).querySelector(s);};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+
+  /* ================= toast ================= */
+  var toast = $('#toast'), toastT;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastT);
+    toastT = setTimeout(function(){toast.classList.remove('show');}, 3200);
+  }
+
+  /* ================= heart canvas ================= */
+  var cvs = $('#bg'), ctx = cvs.getContext('2d');
+  var W=0, H=0, DPR = Math.min(window.devicePixelRatio||1, 2);
+  var COLORS = ['#ff5f8f','#ff8fb4','#c2185b','#b57bff','#ff4d6d','#ffb703'];
+  var parts = [], confetti = [];
+
+  function resize(){
+    W = window.innerWidth; H = window.innerHeight;
+    cvs.width = W*DPR; cvs.height = H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function heartPath(c){
+    c.beginPath();
+    c.moveTo(0,0);
+    c.bezierCurveTo(0,-0.5,-1,-0.5,-1,-1.5);
+    c.bezierCurveTo(-1,-2.5,0,-2.5,0,-1.5);
+    c.bezierCurveTo(0,-2.5,1,-2.5,1,-1.5);
+    c.bezierCurveTo(1,-0.5,0,-0.5,0,0);
+    c.closePath();
+  }
+
+  function spawnAmbient(){
+    var isMobile = W < 700;
+    var max = isMobile ? 16 : 30;
+    if(parts.length < max && Math.random() < 0.35){
+      parts.push({
+        type:'float',
+        x: Math.random()*W, y: H+30,
+        vy: -(0.25 + Math.random()*0.55),
+        sway: Math.random()*Math.PI*2,
+        swaySpeed: 0.008 + Math.random()*0.015,
+        size: 6 + Math.random()*13,
+        alpha: 0.10 + Math.random()*0.22,
+        color: COLORS[(Math.random()*COLORS.length)|0],
+        rot: (Math.random()-0.5)*0.6
+      });
+    }
+  }
+
+  function burst(x,y,n){
+    for(var i=0;i<n;i++){
+      var a = Math.random()*Math.PI*2, sp = 2+Math.random()*6;
+      parts.push({
+        type:'burst', x:x, y:y,
+        vx: Math.cos(a)*sp, vy: Math.sin(a)*sp - 2,
+        size: 5+Math.random()*9, alpha:1,
+        color: COLORS[(Math.random()*COLORS.length)|0],
+        rot: Math.random()*Math.PI, vr:(Math.random()-0.5)*0.25, life: 70
+      });
+    }
+  }
+
+  function confettiBurst(x,y,n){
+    for(var i=0;i<n;i++){
+      var a = -Math.PI/2 + (Math.random()-0.5)*2.2, sp = 5+Math.random()*9;
+      confetti.push({
+        x:x, y:y, vx:Math.cos(a)*sp, vy:Math.sin(a)*sp,
+        w:6+Math.random()*7, h:8+Math.random()*8,
+        rot: Math.random()*Math.PI, vr:(Math.random()-0.5)*0.3,
+        color: COLORS[(Math.random()*COLORS.length)|0], life: 100+Math.random()*40
+      });
+    }
+  }
+
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    spawnAmbient();
+
+    for(var i=parts.length-1;i>=0;i--){
+      var p = parts[i];
+      if(p.type==='float'){
+        p.y += p.vy; p.sway += p.swaySpeed; p.x += Math.sin(p.sway)*0.5;
+        if(p.y < -40){ parts.splice(i,1); continue; }
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.scale(p.size,p.size);
+        heartPath(ctx); ctx.fill(); ctx.restore();
+      } else {
+        p.x += p.vx; p.y += p.vy; p.vy += 0.12; p.vx *= 0.985;
+        p.rot += p.vr; p.life--;
+        if(p.life<=0){ parts.splice(i,1); continue; }
+        ctx.globalAlpha = Math.max(0, p.life/70);
+        ctx.fillStyle = p.color;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.scale(p.size,p.size);
+        heartPath(ctx); ctx.fill(); ctx.restore();
+      }
+    }
+
+    for(var j=confetti.length-1;j>=0;j--){
+      var cf = confetti[j];
+      cf.x += cf.vx; cf.y += cf.vy; cf.vy += 0.22; cf.vx *= 0.99;
+      cf.rot += cf.vr; cf.life--;
+      if(cf.life<=0 || cf.y > H+40){ confetti.splice(j,1); continue; }
+      ctx.globalAlpha = Math.min(1, cf.life/40);
+      ctx.save(); ctx.translate(cf.x,cf.y); ctx.rotate(cf.rot);
+      ctx.fillStyle = cf.color; ctx.fillRect(-cf.w/2,-cf.h/2,cf.w,cf.h);
+      ctx.restore();
+    }
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  document.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('a,button,.coupon,.flip')) return;
+    burst(e.clientX, e.clientY, 8);
+  });
+
+  /* ================= scroll reveal ================= */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); }
+    });
+  },{threshold:0.15});
+  $$('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* ================= typing hero ================= */
+  var lines = [
+    'ini web-nya bukan clickbait, beneran ada isinya :v',
+    'Mommy pelan pelan aja baca nya',
+    'tarik napas dulu, scroll-nya jangan buru-buru 💗'
+  ];
+  var typedEl = $('#typedTxt'), li=0, ci=0, del=false;
+  function type(){
+    var cur = lines[li];
+    if(!del){
+      typedEl.textContent = cur.slice(0, ++ci);
+      if(ci === cur.length){ del = true; setTimeout(type, 2200); return; }
+    } else {
+      typedEl.textContent = cur.slice(0, --ci);
+      if(ci === 0){ del = false; li = (li+1)%lines.length; }
+    }
+    setTimeout(type, del ? 24 : 55);
+  }
+  type();
+
+  $$('[data-scroll]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var t = document.querySelector(b.getAttribute('data-scroll'));
+      if(t) t.scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  /* ================= dodger ================= */
+  var dodgeBtn = $('#dodgeBtn'), dodgeArea = $('#dodgeArea');
+  var dodgeCount = $('#dodgeCount'), dodgeMsg = $('#dodgeMsg');
+  var dodges = 0, caught = false;
+
+  function dodge(){
+    if(caught) return;
+    dodges++;
+    dodgeCount.textContent = dodges;
+    var aw = dodgeArea.clientWidth, ah = dodgeArea.clientHeight;
+    var bw = dodgeBtn.offsetWidth, bh = dodgeBtn.offsetHeight;
+    var x = 12 + Math.random()*Math.max(1,(aw - bw - 24));
+    var y = 44 + Math.random()*Math.max(1,(ah - bh - 56));
+    dodgeBtn.style.left = x + 'px';
+    dodgeBtn.style.top = y + 'px';
+    dodgeBtn.style.transform = 'none';
+    dodgeBtn.style.animation = 'shake .35s ease';
+    setTimeout(function(){ if(!caught) dodgeBtn.style.animation=''; },360);
+    if(dodges >= 5){
+      caught = true;
+      dodgeBtn.classList.add('caught');
+      dodgeBtn.textContent = 'Yaudah deh, klik dah 😤';
+      dodgeBtn.style.left = '50%'; dodgeBtn.style.top = '50%';
+      dodgeBtn.style.transform = 'translate(-50%,-50%)';
+      dodgeCount.textContent = '5 (Mommy berhasil maksa 😆)';
+    }
+  }
+  dodgeBtn.addEventListener('pointerenter', function(){ dodge(); });
+  dodgeBtn.addEventListener('pointerdown', function(e){
+    if(!caught){ e.preventDefault(); dodge(); }
+  });
+  dodgeBtn.addEventListener('click', function(){
+    if(!caught) return;
+    dodgeBtn.style.display = 'none';
+    dodgeMsg.classList.add('show');
+    var r = dodgeArea.getBoundingClientRect();
+    confettiBurst(r.left + r.width/2, r.top + r.height/2, 90);
+    showToast('Nah kan, udah dibilang jangan 😤💗');
+  });
+
+  /* ================= flip cards ================= */
+  $$('.flip').forEach(function(f){
+    f.addEventListener('click', function(){
+      f.classList.toggle('on');
+      burst(f.getBoundingClientRect().left + 40, f.getBoundingClientRect().top + 40, 5);
+    });
+  });
+
+  /* ================= love meter ================= */
+  var meterFill = $('#meterFill'), meterLabel = $('#meterLabel'), meterBtn = $('#meterBtn');
+  var fill = 0, holding = false, maxed = false;
+
+  meterBtn.addEventListener('pointerdown', function(e){
+    e.preventDefault();
+    if(maxed) return;
+    holding = true;
+    meterBtn.textContent = 'TAHAN... JANGAN LEPAS 🫶';
+  });
+  window.addEventListener('pointerup', function(){ holding = false; });
+  window.addEventListener('pointercancel', function(){ holding = false; });
+
+  function meterMsg(p){
+    if(p >= 100) return '100%?!?! Kok bisa?? 😳 (ya iyalah, aku yang itung)';
+    if(p >= 85) return Math.round(p) + '% — bentar lagi... ';
+    if(p >= 60) return Math.round(p) + '% — lumayan sih, tahan dikit';
+    if(p >= 35) return Math.round(p) + '% — kok kayak ragu-ragu 😢';
+    if(p > 0)   return Math.round(p) + '% — baru segini, sungkan ya? 😆';
+    return '0% — belum mulai... Ayo dong 😆';
+  }
+
+  function meterLoop(){
+    if(holding && !maxed){
+      fill = Math.min(100, fill + 0.65);
+      if(fill >= 100){
+        maxed = true; holding = false;
+        meterBtn.textContent = 'MAKSIMAL 💯';
+        var r = meterBtn.getBoundingClientRect();
+        confettiBurst(r.left + r.width/2, r.top, 120);
+        showToast('Ternyata 100%. Ga ada yang salah. Emang beneran Mommy sayang aku 🥺💘');
+      }
+    } else if(!maxed){
+      fill = Math.max(0, fill - 1.4);
+      if(fill === 0) meterBtn.textContent = 'TAHAN DI SINI 🫶';
+    }
+    meterFill.style.width = fill + '%';
+    meterLabel.textContent = meterMsg(fill);
+    requestAnimationFrame(meterLoop);
+  }
+  meterLoop();
+
+  /* ================= letter ================= */
+  var envelope = $('#envelope'), letter = $('#letter'), envHint = $('#envHint');
+  envelope.addEventListener('click', function(){
+    var open = envelope.classList.toggle('open');
+    if(open){
+      setTimeout(function(){
+        letter.classList.add('show');
+        letter.scrollIntoView({behavior:'smooth', block:'center'});
+      }, 450);
+      envHint.textContent = 'udah kebaca, jangan dibusukin ya';
+      var r = envelope.getBoundingClientRect();
+      confettiBurst(r.left + r.width/2, r.top + r.height/2, 70);
+    } else {
+      letter.classList.remove('show');
+      envHint.textContent = 'klik buat buka';
+    }
+  });
+
+  /* ================= pickup lines ================= */
+  var pLines = [
+    'Mommy lucu deh, jadi pengen aku culik',
+    'Mommy kapan nikah?, kalo mw nikah undang aku ya',
+    'Btw Mommy suka gak web nya, kalo suka nanti kasih rating dong',
+    'Maaf ya Mommy aku cuman bisa buat ginian, Gak bisa kasih Mommy apa apa',
+    'Btw Mommy uda makan belum?, kalo belum makan dulu gih'
+  ];
+  var lineTxt = $('#lineTxt'), lineIdx = -1;
+  $('#lineBtn').addEventListener('click', function(){
+    var i;
+    do { i = (Math.random()*pLines.length)|0; } while(i === lineIdx && pLines.length > 1);
+    lineIdx = i;
+    lineTxt.style.opacity = 0;
+    setTimeout(function(){
+      lineTxt.textContent = pLines[i];
+      lineTxt.style.transition = 'opacity .3s';
+      lineTxt.style.opacity = 1;
+    }, 160);
+  });
+
+  /* ================= quiz ================= */
+  var quiz = [
+    {
+      q:'Menurut Mommy aku orang nya gimna?',
+      a:[
+        {t:'Nakal', r:'Orang nya nakal banget susah di atur.'},
+        {t:'Baik', r:'Orang nya baik, lucu, imut, ganteng, rajin menabung.'},
+        {t:'Lucu', r:'Orang nya lucu, gak kaku, asik, dan gak ngejokes 18+.'}
+      ]
+    },
+    {
+      q:'Mommy suka kucing gak?',
+      a:[
+        {t:'Suka', r:'Mommy suka kucing.'},
+        {t:'Gak suka', r:'Mommy gak suka kucing.'},
+        {t:'Suka Banget', r:'Mommy suka banget sama kucing.'},
+        {t:'Netral', r:'Mommy Netral'}
+      ]
+    },
+    {
+      q:'Mommy udah punya yg baru belum...',
+      a:[
+        {t:'Udah', r:'Wah cpt banget ya dapet nya :v.'},
+        {t:'Belum', r:'Lagi mau sendiri ajah ya?.'},
+        {t:'Bingung 🫠', r:'Bingung kenapa?, kalo gak mau jawab ydh gpp ;v.'},
+        {t:'Rahasia', r:'Udah main rahasia rahasiaan ya skrng :v.'}
+      ]
+    }
+  ];
+  var qi = 0;
+  var qProgress=$('#qProgress'), qTitle=$('#qTitle'), qOpts=$('#qOpts'), qFb=$('#qFb');
+  var quizBox=$('#quizBox'), qResult=$('#qResult');
+
+  function renderQ(){
+    var item = quiz[qi];
+    qProgress.textContent = 'pertanyaan ' + (qi+1) + ' / ' + quiz.length;
+    qTitle.textContent = item.q;
+    qFb.textContent = '';
+    qOpts.innerHTML = '';
+    item.a.forEach(function(opt){
+      var b = document.createElement('button');
+      b.className = 'q-opt';
+      b.textContent = opt.t;
+      b.addEventListener('click', function(){
+        qFb.textContent = '✅ ' + opt.r;
+        $$('.q-opt', qOpts).forEach(function(o){ o.disabled = true; o.style.opacity = .55; });
+        b.style.opacity = 1;
+        b.style.borderColor = '#ff4d6d';
+        burst(b.getBoundingClientRect().left + 30, b.getBoundingClientRect().top + 20, 6);
+        setTimeout(function(){
+          qi++;
+          if(qi < quiz.length){ renderQ(); }
+          else { finish(); }
+        }, 1400);
+      });
+      qOpts.appendChild(b);
+    });
+  }
+  function finish(){
+    quizBox.style.display = 'none';
+    qResult.classList.add('show');
+    confettiBurst(window.innerWidth/2, window.innerHeight*0.35, 140);
+    showToast('Hasil: Makasih Udah jawab pertanyaan aku');
+  }
+  $('#qRestart').addEventListener('click', function(){
+    qi = 0;
+    quizBox.style.display = 'block';
+    qResult.classList.remove('show');
+    renderQ();
+  });
+  renderQ();
+
+  /* ================= coupons ================= */
+  var coupons = $$('.coupon'), claimed = 0;
+  coupons.forEach(function(c){
+    c.addEventListener('click', function(){
+      if(c.classList.contains('used')){
+        showToast('Udah pernah diklaim itu 😆 cari yang lain!');
+        return;
+      }
+      c.classList.add('used');
+      claimed++;
+      var r = c.getBoundingClientRect();
+      confettiBurst(r.left + r.width/2, r.top, 50);
+      showToast('Kupon berhasil diklaim 🎉 (ga bisa dijual-belikan ya)');
+      if(claimed === coupons.length){
+        $('#couponDone').classList.add('show');
+      }
+    });
+  });
+
+  /* ================= footer heart + typing easter egg ================= */
+  var heartClicks = 0;
+  $('#footHeart').addEventListener('click', function(){
+    heartClicks++;
+    var r = $('#footHeart').getBoundingClientRect();
+    burst(r.left + r.height/2, r.top + r.height/2, 10);
+    if(heartClicks === 7){
+      heartClicks = 0;
+      showToast('I love you Mommy');
+      confettiBurst(window.innerWidth/2, window.innerHeight/2, 100);
+    } else if(heartClicks === 3){
+      showToast('3x lagi klik hatinya, siap-siap 😆');
+    }
+  });
+
+  var buf = '';
+  document.addEventListener('keydown', function(e){
+    if(!e.key || e.key.length !== 1) return;
+    buf = (buf + e.key.toLowerCase()).slice(-6);
+    if(buf === 'dinda'){
+      showToast('Anjai');
+      confettiBurst(window.innerWidth/2, window.innerHeight*0.3, 120);
+      buf = '';
+    }
+  });
+
+  /* ================= time spent ================= */
+  var start = Date.now();
+  setInterval(function(){
+    var s = Math.floor((Date.now()-start)/1000);
+    var m = Math.floor(s/60);
+    var txt = m > 0 ? (m + ' menit ' + (s%60) + ' detik') : (s + ' detik');
+    $('#timeSpent').textContent = txt;
+  }, 1000);
+
+  /* ================= tiny music ================= */
+  var musicBtn = $('#musicBtn'), audioCtx = null, musicOn = false, mTimer = null, mIdx = 0;
+  var scale = [523.25, 659.25, 783.99, 880.00, 1046.50, 880.00, 783.99, 659.25,
+               587.33, 698.46, 880.00, 1174.66, 880.00, 698.46, 659.25, 523.25];
+
+  function tone(freq, dur){
+    if(!audioCtx) return;
+    var t0 = audioCtx.currentTime;
+    var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = 'sine'; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.16, t0 + 0.04);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(t0); o.stop(t0 + dur + 0.05);
+  }
+  function step(){
+    var f = scale[mIdx % scale.length];
+    tone(f, 0.55);
+    if(mIdx % 4 === 0) tone(f/2, 0.9);
+    mIdx++;
+    mTimer = setTimeout(step, 430);
+  }
+  musicBtn.addEventListener('click', function(){
+    try{
+      if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if(audioCtx.state === 'suspended') audioCtx.resume();
+    }catch(err){ showToast('Browser kamu ga dukung musik :v'); return; }
+
+    musicOn = !musicOn;
+    musicBtn.classList.toggle('on', musicOn);
+    if(musicOn){
+      step();
+      showToast('Musik nyala 🎵 (versi sederhana, maaf ya :v)');
+    } else {
+      clearTimeout(mTimer);
+      showToast('Musik dimatiin.');
+    }
+  });
+
+  /* ================= smooth anchor scroll (nav) ================= */
+  $$('nav.pill a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      var t = document.querySelector(id);
+      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
